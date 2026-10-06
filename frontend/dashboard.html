@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Dashboard — AI Agent Guardian</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <div class="brand-logo">
+          <div class="brand-shield-icon">🛡️</div>
+          <span>GUARDIAN</span>
+        </div>
+        <div class="brand-tagline">Autonomous AI Defense Platform</div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item active">
+          <a href="/dashboard.html">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#agents-section">
+            <span class="nav-icon">🤖</span>
+            <span>Agents</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#events-section">
+            <span class="nav-icon">⚠️</span>
+            <span>Security Events</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/chat.html">
+            <span class="nav-icon">💬</span>
+            <span>Guardian Chat</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="alert('Settings configured via environment (.env)'); return false;">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="system-status-box">
+        <div class="status-row">
+          <span class="status-label">Guardian Core:</span>
+          <span class="status-val" style="color:var(--sev-low);"><span class="pulse-dot green"></span> ONLINE</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">Fleet Status:</span>
+          <span class="status-val" style="color:var(--accent-cyan);"><span class="pulse-dot cyan"></span> MONITORING</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">Risk Engine:</span>
+          <span class="status-val" style="color:#ffffff;">V1 Deterministic</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Sticky Header -->
+      <header class="top-header">
+        <div class="page-title">
+          <h1>Security &amp; Threat Operations</h1>
+        </div>
+
+        <div class="header-right">
+          <button id="refresh-btn" class="btn btn-secondary" style="padding:6px 12px; font-size:0.8rem;">
+            🔄 Refresh Telemetry
+          </button>
+          <div class="user-profile" id="user-profile-display">
+            <div class="user-avatar">AD</div>
+            <div>
+              <div class="user-name">admin</div>
+              <div class="user-role">SECURITY ADMIN</div>
+            </div>
+          </div>
+          <button id="logout-btn" class="btn btn-cyber" style="padding:6px 12px; font-size:0.8rem;">
+            Sign Out
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="content-body">
+        <!-- Top Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card cyan">
+            <div class="stat-header">
+              <span class="stat-title">Total Agents</span>
+              <span class="stat-icon">🤖</span>
+            </div>
+            <div class="stat-value" id="stat-total-agents">-</div>
+            <div class="stat-subtext">Registered autonomous units</div>
+          </div>
+
+          <div class="stat-card green">
+            <div class="stat-header">
+              <span class="stat-title">Active Fleet</span>
+              <span class="stat-icon">🟢</span>
+            </div>
+            <div class="stat-value" id="stat-active-agents" style="color:var(--sev-low);">-</div>
+            <div class="stat-subtext">Live background executions</div>
+          </div>
+
+          <div class="stat-card yellow">
+            <div class="stat-header">
+              <span class="stat-title">Security Events</span>
+              <span class="stat-icon">⚡</span>
+            </div>
+            <div class="stat-value" id="stat-total-events" style="color:var(--sev-medium);">-</div>
+            <div class="stat-subtext">Anomalies &amp; telemetry logs</div>
+          </div>
+
+          <div class="stat-card red">
+            <div class="stat-header">
+              <span class="stat-title">High Risk Agents</span>
+              <span class="stat-icon">🚨</span>
+            </div>
+            <div class="stat-value" id="stat-high-risk" style="color:var(--sev-critical);">-</div>
+            <div class="stat-subtext">Require immediate policy review</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Dual Grid -->
+        <div class="dashboard-grid">
+          <!-- Left: Agents Risk Overview -->
+          <div class="card" id="agents-section">
+            <div class="card-title">
+              <span>Agent Fleet Risk Overview</span>
+              <a href="/chat.html" class="btn btn-cyber" style="padding:4px 10px; font-size:0.75rem;">
+                Ask Guardian
+              </a>
+            </div>
+            <div class="table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>Agent Name</th>
+                    <th>Status</th>
+                    <th>Risk Score</th>
+                    <th>Risk Level</th>
+                    <th>Last Active</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="agents-table-body">
+                  <tr>
+                    <td colspan="6" style="text-align:center; padding:20px; color:var(--text-muted);">
+                      Querying security database...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right: Recent Security Events -->
+          <div class="card" id="events-section">
+            <div class="card-title">
+              <span>Recent Security Events</span>
+              <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono);">
+                LIVE TELEMETRY
+              </span>
+            </div>
+            <div class="event-feed" id="events-stream">
+              <div style="color:var(--text-muted); text-align:center; padding:20px;">
+                Loading event stream...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Agent Details Inspection Modal -->
+  <div class="modal-overlay" id="agent-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close">&times;</button>
+      <div id="modal-agent-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Guardian — Intelligent Security & Risk Monitoring Platform</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .hero-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 229, 255, 0.08), transparent 50%), var(--bg-dark);
+    }
+    .hero-shield {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #070b12;
+      margin-bottom: 24px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent-cyan), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+    }
+    .hero-desc {
+      max-width: 620px;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .feature-strip {
+      display: flex;
+      gap: 24px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 900px;
+    }
+    .feature-pill {
+      background: rgba(13, 21, 36, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-container">
+    <div class="hero-shield">🛡️</div>
+    <div class="hero-tagline">Monitor. Analyze. Protect. Approve.</div>
+    <h1 class="hero-title">AI Agent <span>Guardian</span></h1>
+    <p class="hero-desc">
+      Intelligent cybersecurity and risk monitoring platform designed specifically for autonomous AI agents. Real-time telemetry, transparent risk scoring, and conversational security investigation.
+    </p>
+
+    <div class="hero-actions">
+      <a href="/login.html" class="btn btn-primary" style="padding:14px 28px; font-size:1rem;">
+        Launch Platform
+      </a>
+      <a href="/dashboard.html" class="btn btn-secondary" style="padding:14px 28px; font-size:1rem;">
+        Security Dashboard
+      </a>
+      <a href="/chat.html" class="btn btn-cyber" style="padding:14px 28px; font-size:1rem;">
+        Guardian Chat
+      </a>
+    </div>
+
+    <div class="feature-strip">
+      <div class="feature-pill">
+        <span class="pulse-dot green"></span> Guardian Status: ONLINE
+      </div>
+      <div class="feature-pill">
+        <span class="pulse-dot cyan"></span> Transparent Risk Engine
+      </div>
+      <div class="feature-pill">
+        <span class="pulse-dot green"></span> Intent-Based Chatbot
+      </div>
+      <div class="feature-pill">
+        <span class="pulse-dot red"></span> Behavioral Anomaly Telemetry
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script>
+    // Auto-redirect to dashboard if token exists
+    if (GuardianAPI.getAuthToken()) {
+      window.location.href = '/dashboard.html';
+    }
+  </script>
+</body>
+</html>

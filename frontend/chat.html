@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Chatbot — AI Agent Guardian</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="stylesheet" href="/static/css/chat.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Main Left Sidebar -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <div class="brand-logo">
+          <div class="brand-shield-icon">🛡️</div>
+          <span>GUARDIAN</span>
+        </div>
+        <div class="brand-tagline">Autonomous AI Defense Platform</div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="/dashboard.html">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/dashboard.html#agents-section">
+            <span class="nav-icon">🤖</span>
+            <span>Agents</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/dashboard.html#events-section">
+            <span class="nav-icon">⚠️</span>
+            <span>Security Events</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a href="/chat.html">
+            <span class="nav-icon">💬</span>
+            <span>Guardian Chat</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="agent-status-mini-panel">
+        <div class="mini-panel-title">Fleet Risk Snapshot</div>
+        <div id="agent-mini-list">
+          <div style="font-size:0.75rem; color:var(--text-muted);">Loading agents...</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main class="main-wrapper">
+      <!-- Top Sticky Header -->
+      <header class="top-header">
+        <div class="page-title" style="display:flex; align-items:center; gap:12px;">
+          <h1>Guardian Security Assistant</h1>
+          <span class="badge badge-info" style="font-size:0.7rem;">INTENT ENGINE V1</span>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile" id="user-profile-display">
+            <div class="user-avatar">AD</div>
+            <div>
+              <div class="user-name">admin</div>
+              <div class="user-role">SECURITY ADMIN</div>
+            </div>
+          </div>
+          <button id="logout-btn" class="btn btn-cyber" style="padding:6px 12px; font-size:0.8rem;">
+            Sign Out
+          </button>
+        </div>
+      </header>
+
+      <!-- Chat Container -->
+      <div class="chat-container">
+        <!-- Sub-sidebar for Sessions -->
+        <div class="chat-sidebar">
+          <div class="chat-sidebar-header">
+            <span class="chat-sidebar-title">Recent Inquiries</span>
+            <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="location.href='/chat.html'">
+              + New
+            </button>
+          </div>
+          <ul class="session-list" id="session-list">
+            <!-- Dynamic session list -->
+          </ul>
+        </div>
+
+        <!-- Chat Stream Pane -->
+        <div class="chat-main">
+          <!-- Messages Stream -->
+          <div class="messages-stream" id="messages-stream">
+            <div class="msg-row guardian">
+              <div class="msg-avatar guardian">AG</div>
+              <div class="msg-content-box">
+                <div class="msg-bubble">
+                  Greetings Security Officer. I am the <strong>AI Agent Guardian</strong> core intelligence.
+                  I continuously monitor your autonomous agent fleet, analyze tool execution logs, and calculate real-time risk scores.
+                  <br><br>
+                  How may I assist your security investigation today?
+                </div>
+                <div class="msg-meta">
+                  <span class="intent-pill">GUARDIAN ONLINE</span>
+                  <span>System Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested Prompt Chips -->
+          <div class="prompt-chips-bar">
+            <button class="chip-btn" data-prompt="Show me high-risk agents">🚨 Show high-risk agents</button>
+            <button class="chip-btn" data-prompt="Why is Agent Gamma high risk?">🔍 Why is Agent Gamma high risk?</button>
+            <button class="chip-btn" data-prompt="Give me today's security summary">📊 Today's security summary</button>
+            <button class="chip-btn" data-prompt="What security events happened recently?">⚡ Recent security events</button>
+            <button class="chip-btn" data-prompt="Which agent has the highest risk?">🎯 Highest risk agent</button>
+            <button class="chip-btn" data-prompt="Is Agent Alpha behaving normally?">🟢 Is Agent Alpha normal?</button>
+          </div>
+
+          <!-- Message Input Bar -->
+          <div class="chat-input-area">
+            <form class="chat-form" id="chat-form">
+              <input 
+                type="text" 
+                id="chat-input" 
+                class="chat-input" 
+                placeholder="Ask Guardian about agent risk, threats, or security alerts... (Press Enter to send)"
+                autocomplete="off"
+              >
+              <button type="submit" class="btn btn-primary" style="padding:14px 22px;">
+                Send Inquire
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>
